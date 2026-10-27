@@ -4,3 +4,45 @@
     box-sizing: border-box;
 }
 
+body {
+    background: radial-gradient(at 50% 0, #19213699 0%, #0000 60%), linear-gradient(#0a0a0f 0%, #0d0d14 50%, #0a0a0f 100%);
+    padding: 20px;
+    background-image: url(https://media.istockphoto.com/id/1211526766/photo/space-stars-black-background.jpg?s=612x612&w=0&k=20&c=Yw0BKEHNBDiVL6T3F3hBWn6Jg8Kz8KClvDOZuWtcLIc=);
+  }
+  
+
+.header {
+    background-color: white;
+    border: 3px solid #ff9ebb;
+    border-radius: 30px;
+    padding: 15px;
+    margin: 0 auto 30px auto;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .personajes-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .name {
+    padding: 2vh;
+    text-shadow: 0 0 10px #ffe81f80, 0 0 20px #ffe81f4d, 0 0 40px #ffe81f33;
+    color: #ffe81f;
+}
+
+.tarjeta {
+border: solid;
+color: #ffe81f;
+padding-left: 4vh;
+padding-bottom: 2vh;
+border-color: #ffe81f;
+border-radius: 2vh;
+}
