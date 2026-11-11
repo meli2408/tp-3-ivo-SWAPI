@@ -11,18 +11,46 @@ body {
   }
   
 
-.header {
-    background-color: white;
-    border: 3px solid #ff9ebb;
+
+
+
+  .header {
+    background-color: #0a0a0f;
+    border: 3px solid #ffe81f;
     border-radius: 30px;
-    padding: 15px;
+    padding: 18px;
     margin: 0 auto 30px auto;
     max-width: 1000px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.buscador {
+    flex: 1 1 100%;
+}
+ 
+.header select {
+    flex: 1 1 200px;
+}
+ 
+.buscador,
+.header select {
+    padding: 10px 16px;
+    font-size: 1rem;
+    color: #ffe81f;
+    background-color: #0a0a0f;
+    border: 2px solid #ffe81f;
+    border-radius: 20px;
+    transition: box-shadow 0.2s;
+}
+ 
+.filtros {
+  display: flex;
+  justify-content: space-between;
+}
 
   .personajes-container {
     display: grid;
@@ -40,9 +68,51 @@ body {
 
 .tarjeta {
 border: solid;
+background-color: #0a0a0f;
 color: #ffe81f;
 padding-left: 4vh;
+padding-right: 4vh;
 padding-bottom: 2vh;
 border-color: #ffe81f;
 border-radius: 2vh;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.parrafos {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh;
+}
+
+.species {
+  display: flex;
+margin-top: 0.5vh;
+margin-bottom: 0.5vh;
+}
+
+
+
+
+.name {
+  padding: 14px 0 10px;
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px #ffe81f80, 0 0 20px #ffe81f4d, 0 0 40px #ffe81f33;
+  color: #ffe81f;
+}
+
+.gender,
+.species,
+.homeworld {
+  text-transform: capitalize;
+}
+
+.tarjeta ul {
+  margin-top: 10px;
+}
+
+.tarjeta li {
+  margin-left: 22px;
+  font-size: 0.9rem;
+}
+
+

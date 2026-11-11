@@ -11,9 +11,12 @@ function mostrarPersonajes(lista) {
   container.innerHTML = lista.map(persona => `
     <article class="tarjeta">
       <h2 class="name"><span class="cat">${persona.name}</span></h2>
+       ${persona.imagen ? `<img class="foto" src="${persona.imagen}" alt="${persona.name}" loading="lazy" onerror="this.remove()">` : ''}
+      <div class="parrafos">
       <p class="gender">Gender: ${persona.gender}</p>
       <p class="species">Species:${persona.speciesNombre}</p>
       <p class="homeworld">Homeworld:${persona.homeworldNombre}</p>
+      </div>
       <ul>Aparece en:
         ${persona.filmsNombres.map(film => `<li>${film}</li>`).join('')}
       </ul>
@@ -53,14 +56,19 @@ filtroPlaneta.addEventListener('change', filtrar);
 filtroPeliculas.addEventListener('change', filtrar);
 
 async function cargarDatos() {
-  try {
-    const base = "https://swapi.info/api";
-    const [gente, planetas, especies, peliculas] = await Promise.all([
+    const [gente, planetas, especies, peliculas, imagenes] = await Promise.all([
       fetch(`${base}/people`).then(r => r.json()),
       fetch(`${base}/planets`).then(r => r.json()),
       fetch(`${base}/species`).then(r => r.json()),
-      fetch(`${base}/films`).then(r => r.json())
+      fetch(`${base}/films`).then(r => r.json()),
+      fetch('https://akabab.github.io/starwars-api/api/all.json')
+        .then(r => r.json())
+        .catch(() => [])
     ]);
+    
+    const imagenPorNombre = Object.fromEntries(
+      imagenes.map(i => [i.name.toLowerCase(), i.image])
+    );
 
     const nombrePlaneta = Object.fromEntries(planetas.map(p => [p.url, p.name]));
     const nombreEspecie = Object.fromEntries(especies.map(e => [e.url, e.name]));
@@ -73,9 +81,11 @@ personajes = gente.map(p => {
   return {
     ...p,
     species: especiesUrls,
+    imagen: imagenPorNombre[p.name.toLowerCase()] || null,
     homeworldNombre: nombrePlaneta[p.homeworld] || "Desconocido",
     speciesNombre: especiesUrls.map(s => nombreEspecie[s]).join(", "),
     filmsNombres: p.films.map(f => nombrePelicula[f])
+    
   };
 });
 
@@ -84,9 +94,6 @@ personajes = gente.map(p => {
     llenarSelect(filtroPeliculas, peliculas.sort((a, b) => a.episode_id - b.episode_id), 'title');
 
     mostrarPersonajes(personajes);
-  } catch (error) {
-    console.error('Error al cargar los datos:', error);
-  }
-}
+  } 
 
 cargarDatos();
